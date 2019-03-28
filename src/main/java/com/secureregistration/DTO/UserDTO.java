@@ -1,11 +1,14 @@
 package com.secureregistration.DTO;
 
+import com.secureregistration.custom_validations.PasswordMatching;
+import com.secureregistration.custom_validations.ValidEmail;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
+@PasswordMatching
 public class UserDTO {
 
     @NotNull
@@ -23,6 +26,7 @@ public class UserDTO {
 
     @NotNull
     @NotEmpty
+    @ValidEmail
     private String email;
 
 }
