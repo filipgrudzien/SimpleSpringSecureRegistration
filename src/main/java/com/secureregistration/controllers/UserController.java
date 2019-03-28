@@ -1,6 +1,7 @@
 package com.secureregistration.controllers;
 
 import com.secureregistration.DTO.UserDTO;
+import com.secureregistration.custom_exceptions.EmailExistsException;
 import com.secureregistration.entities.User;
 import com.secureregistration.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,16 +36,13 @@ public class UserController {
         return "registration";
     }
 
+    @RequestMapping(value = "/user/registration", method = RequestMethod.POST)
     public ModelAndView registerUserAccount(
             @ModelAttribute("user") @Valid UserDTO accountDto,
-            BindingResult result, WebRequest request, Errors errors) {
-        ;
-    }
+            BindingResult result,
+            WebRequest request,
+            Errors errors) {
 
-    @RequestMapping(value = "/user/registration", method = RequestMethod.POST)
-    public ModelAndView registerUserAccount
-            (@ModelAttribute("user") @Valid UserDTO accountDto,
-             BindingResult result, WebRequest request, Errors errors) {
         User registered = new User();
         if (!result.hasErrors()) {
             registered = createUserAccount(accountDto, result);
@@ -52,13 +50,17 @@ public class UserController {
         if (registered == null) {
             result.rejectValue("email", "message.regError");
         }
-        // rest of the implementation
+        if (result.hasErrors()) {
+            return new ModelAndView("registration", "user", accountDto);
+        }
+        else {
+            return new ModelAndView("successRegister", "user", accountDto);
+        }
     }
-
     private User createUserAccount(UserDTO accountDto, BindingResult result) {
         User registered = null;
         try {
-            registered = service.registerNewUserAccount(accountDto);
+            registered = userService.registerNewUserAccount(accountDto);
         } catch (EmailExistsException e) {
             return null;
         }
