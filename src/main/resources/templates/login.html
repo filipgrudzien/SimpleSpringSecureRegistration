@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <title>Registration</title>
+    <title>Login page</title>
 </head>
 <body class="body-color">
 
@@ -25,55 +25,29 @@
             <div class="usercols col-sm-8 col-md-8 col-lg-8">
                 <div class="input-group text-center">
                     <div class="edit-margin text-center">
-                        <p class="action-subtitles">Register</p>
+                        <p class="action-subtitles">Login</p>
                     </div>
-                    <form action="#" th:action="@{/registration}" class="form-field" th:object="${user}" method="post">
+                    <form action="#" th:action="@{/login}" class="form-field" th:object="${user}" method="post">
 
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">First name(*)</span>
-                            </div>
-                            <input type="text" placeholder="First name" class="form-control" th:field="*{firstname}">
-                        </div>
-
-                        <div class="validators rounded">
-                            <p th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">First name error</p>
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Last name(*)</span>
-                            </div>
-                            <input type="text" placeholder="Last name" class="form-control" th:field="*{lastname}">
-                        </div>
-
-                        <div class="validators rounded">
-                            <p th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Password error</p>
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Email(*)</span>
+                                <span class="input-group-text">Email</span>
                             </div>
                             <input type="text" placeholder="Email" class="form-control" th:field="*{email}">
                         </div>
 
-                        <div class="validators rounded">
-                            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</p>
-                        </div>
-
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Password(*)</span>
+                                <span class="input-group-text">Password</span>
                             </div>
                             <input type="password" class="form-control" th:field="*{password}">
                         </div>
 
-                        <div class="validators rounded">
-                            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Email error</p>
+                        <div th:if="${param.error}" class="validators rounded text-center">
+                            <p>Email or Password is invalid.</p>
                         </div>
 
-                        <input class="updatebutton btn btn-primary" type="submit" value="Register"/>
+                        <input class="updatebutton btn btn-primary" type="submit" value="Login"/>
 
                     </form>
                 </div>

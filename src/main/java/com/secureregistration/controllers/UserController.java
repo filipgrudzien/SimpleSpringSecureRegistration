@@ -1,7 +1,6 @@
 package com.secureregistration.controllers;
 
 import com.secureregistration.DTO.UserDTO;
-import com.secureregistration.custom_exceptions.EmailExistsException;
 import com.secureregistration.entities.User;
 import com.secureregistration.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ import javax.validation.Valid;
 @Controller("user_controller")
 public class UserController {
 
-    @Autowired
+   /* @Autowired
     private UserService userService;
 
     @RequestMapping("/")
@@ -65,6 +64,6 @@ public class UserController {
             return null;
         }
         return registered;
-    }
+    }*/
 
 }

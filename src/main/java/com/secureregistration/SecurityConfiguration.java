@@ -1,4 +1,4 @@
-package com.secureregistration.configurations;
+package com.secureregistration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

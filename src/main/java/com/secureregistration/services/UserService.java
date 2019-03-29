@@ -1,7 +1,6 @@
 package com.secureregistration.services;
 
 import com.secureregistration.DTO.UserDTO;
-import com.secureregistration.custom_exceptions.EmailExistsException;
 import com.secureregistration.entities.User;
 import com.secureregistration.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ public class UserService implements UserServiceImpl {
     @Autowired
     private UserRepository userRepository;
 
-    @Transactional
+    /*@Transactional
     @Override
     public User registerNewUserAccount(UserDTO accountDto) throws EmailExistsException {
 
@@ -28,7 +27,7 @@ public class UserService implements UserServiceImpl {
         //user.setRoles(Arrays.asList("ROLE_USER"));
         return userRepository.save(user);
 
-    }
+    }*/
 
     private boolean checkIfEmailExist(String email) {
         User user = userRepository.findByEmail(email);
